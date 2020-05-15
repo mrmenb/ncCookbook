@@ -39,7 +39,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         requestForPermission();
-        updateMain();
     }
 
     public void updateMain(){
@@ -53,33 +52,31 @@ public class MainActivity extends AppCompatActivity {
         String path = getPath();
         if (path == ""){
             pathSelector();
-            path = getPath();
-        }
+        } else {
+            // reformat path string to actually be callable
+            path = Environment.getExternalStorageDirectory().toString() + "/" + path.split(":")[1];
 
-        // reformat path string to actually be callable
-        path = Environment.getExternalStorageDirectory().toString() + "/" + path.split(":")[1];
-
-        File directory = new File(path);
-        File[] files = directory.listFiles();
+            File directory = new File(path);
+            File[] files = directory.listFiles();
 
 
-        final Recipe[] recipes = new Recipe[files.length];
+            final Recipe[] recipes = new Recipe[files.length];
 
-        for (int i = 0; i < files.length; i++)
-        {
-            recipes[i] = new Recipe(files[i]);
-        }
-
-        grid.setOnItemClickListener(new AdapterView.OnItemClickListener(){
-            @Override
-            public void onItemClick(AdapterView parent, View view, int position, long id){
-                Recipe recipe = recipes[position];
-                openRecipe(view, recipe);
+            for (int i = 0; i < files.length; i++) {
+                recipes[i] = new Recipe(files[i]);
             }
-        });
 
-        RecipeAdapter recipeAdapter = new RecipeAdapter(this, recipes, elem_per_row);
-        grid.setAdapter(recipeAdapter);
+            grid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView parent, View view, int position, long id) {
+                    Recipe recipe = recipes[position];
+                    openRecipe(view, recipe);
+                }
+            });
+
+            RecipeAdapter recipeAdapter = new RecipeAdapter(this, recipes, elem_per_row);
+            grid.setAdapter(recipeAdapter);
+        }
     }
 
     @Override
@@ -96,7 +93,7 @@ public class MainActivity extends AppCompatActivity {
 
     protected String getPath(){
         SharedPreferences prefs = this.getSharedPreferences(
-                "com.example.myfirstapp", Context.MODE_PRIVATE);
+                "com.example.ncCookbook", Context.MODE_PRIVATE);
         String pathKey = "com.example.app.path";
         String path = prefs.getString(pathKey, "");
         return path;
@@ -114,13 +111,14 @@ public class MainActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == REQUEST_PICK_FOLDER && resultCode == Activity.RESULT_OK) {
             setPath(data.getData());
+            updateMain();
         }
     }
 
     protected void setPath(Uri uri){
         Uri docUri = uri;
         SharedPreferences prefs = this.getSharedPreferences(
-                "com.example.myfirstapp", Context.MODE_PRIVATE);
+                "com.example.ncCookbook", Context.MODE_PRIVATE);
         String pathKey = "com.example.app.path";
         SharedPreferences.Editor editor = prefs.edit();
 
