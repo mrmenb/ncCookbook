@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="white">#FFFFFF</color>
+    <color name="yellow">#FFFF00</color>
+    <color name="red">#FF0000</color>
+    <color name="gray">#808080</color>
+    <color name="green">#008000</color>
+    <color name="blue">#0000FF</color>
+    <color name="black">#000000</color>
+
+    <color name="toggleButton">#C1C1C1</color>
+    <color name="editButton">#1995FA</color>
+    <color name="pauseButton">#FF7043</color>
+    <color name="colorPrimary">#4E4E4E</color>
+    <color name="colorPrimaryDark">#000000</color>
+    <color name="colorAccent">#FF00FF</color>
+</resources>

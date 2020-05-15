@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/editTitle1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:labelFor="@id/editDescription"
+                android:text="@string/description"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/editDescription"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:importantForAutofill="no"
+                android:inputType="textPersonName" />
+
+            <TextView
+                android:id="@+id/editTitle2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:labelFor="@id/editPreparationTime"
+                android:text="@string/preparation_time"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <TimePicker
+                android:id="@+id/editPreparationTime"
+                android:layout_width="wrap_content"
+                android:layout_height="150dp"
+                android:timePickerMode="spinner" />
+
+            <TextView
+                android:id="@+id/editTitle3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:labelFor="@id/editCookTime"
+                android:text="@string/cooking_time"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <TimePicker
+                android:id="@+id/editCookTime"
+                android:layout_width="wrap_content"
+                android:layout_height="150dp"
+                android:timePickerMode="spinner" />
+
+            <TextView
+                android:id="@+id/editTitle4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:labelFor="@id/editTotalTime"
+                android:text="@string/total_time"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <TimePicker
+                android:id="@+id/editTotalTime"
+                android:layout_width="wrap_content"
+                android:layout_height="150dp"
+                android:timePickerMode="spinner" />
+
+            <Button
+                android:id="@+id/editSaveButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="50dp"
+                android:layout_marginBottom="50dp"
+                android:text="@string/save"/>
+
+
+
+        </LinearLayout>
+    </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>
